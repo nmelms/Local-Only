@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Coffee Shop 1",
+    "lat": 46.49537,
+    "lng": -73.51851,
+    "description": "A unique coffee experience at Coffee Shop 1."
+  },
+  {
+    "title": "Coffee Shop 2",
+    "lat": 42.52849,
+    "lng": -112.01466,
+    "description": "A unique coffee experience at Coffee Shop 2."
+  },
+  {
+    "title": "Coffee Shop 3",
+    "lat": 26.80869,
+    "lng": -121.70453,
+    "description": "A unique coffee experience at Coffee Shop 3."
+  },
+  {
+    "title": "Coffee Shop 4",
+    "lat": 30.91888,
+    "lng": -69.97557,
+    "description": "A unique coffee experience at Coffee Shop 4."
+  },
+  {
+    "title": "Coffee Shop 5",
+    "lat": 26.56206,
+    "lng": -84.99585,
+    "description": "A unique coffee experience at Coffee Shop 5."
+  },
+  {
+    "title": "Coffee Shop 6",
+    "lat": 32.92506,
+    "lng": -68.23612,
+    "description": "A unique coffee experience at Coffee Shop 6."
+  },
+  {
+    "title": "Coffee Shop 7",
+    "lat": 48.33873,
+    "lng": -93.84574,
+    "description": "A unique coffee experience at Coffee Shop 7."
+  },
+  {
+    "title": "Coffee Shop 8",
+    "lat": 37.05655,
+    "lng": -103.91786,
+    "description": "A unique coffee experience at Coffee Shop 8."
+  },
+  {
+    "title": "Coffee Shop 9",
+    "lat": 44.37963,
+    "lng": -88.79072,
+    "description": "A unique coffee experience at Coffee Shop 9."
+  },
+  {
+    "title": "Coffee Shop 10",
+    "lat": 46.9034,
+    "lng": -76.52413,
+    "description": "A unique coffee experience at Coffee Shop 10."
+  },
+  {
+    "title": "Coffee Shop 11",
+    "lat": 40.8495,
+    "lng": -85.16821,
+    "description": "A unique coffee experience at Coffee Shop 11."
+  },
+  {
+    "title": "Coffee Shop 12",
+    "lat": 34.70348,
+    "lng": -89.88812,
+    "description": "A unique coffee experience at Coffee Shop 12."
+  },
+  {
+    "title": "Coffee Shop 13",
+    "lat": 36.69078,
+    "lng": -98.02699,
+    "description": "A unique coffee experience at Coffee Shop 13."
+  },
+  {
+    "title": "Coffee Shop 14",
+    "lat": 43.75312,
+    "lng": -75.60229,
+    "description": "A unique coffee experience at Coffee Shop 14."
+  },
+  {
+    "title": "Coffee Shop 15",
+    "lat": 35.29317,
+    "lng": -116.49288,
+    "description": "A unique coffee experience at Coffee Shop 15."
+  },
+  {
+    "title": "Coffee Shop 16",
+    "lat": 33.37336,
+    "lng": -75.38211,
+    "description": "A unique coffee experience at Coffee Shop 16."
+  },
+  {
+    "title": "Coffee Shop 17",
+    "lat": 37.18294,
+    "lng": -72.37213,
+    "description": "A unique coffee experience at Coffee Shop 17."
+  },
+  {
+    "title": "Coffee Shop 18",
+    "lat": 30.3667,
+    "lng": -116.15026,
+    "description": "A unique coffee experience at Coffee Shop 18."
+  },
+  {
+    "title": "Coffee Shop 19",
+    "lat": 42.33191,
+    "lng": -104.16538,
+    "description": "A unique coffee experience at Coffee Shop 19."
+  },
+  {
+    "title": "Coffee Shop 20",
+    "lat": 32.47487,
+    "lng": -75.21286,
+    "description": "A unique coffee experience at Coffee Shop 20."
+  }
+]
