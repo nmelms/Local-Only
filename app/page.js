@@ -4,13 +4,27 @@ import OpenStreetMap from "./components/Map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// ... other imports
+import useUserStore from "./useUserStore";
 
 export default function Home() {
+  const { lat, setLocation } = useUserStore();
+
+  const handlePositionClick = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocation(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      document.getElementById("location").innerHTML =
+        "Geolocation is not supported by this browser.";
+    }
+  };
+
   return (
     <main>
       <OpenStreetMap />
       <FontAwesomeIcon
+        onClick={() => handlePositionClick()}
         className="position-btn ps-2"
         size="2x"
         icon={faCrosshairs}

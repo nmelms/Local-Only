@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import coffeeShops from "../data/data.json";
+import useUserStore from "../useUserStore.jsx";
 
 const OpenStreetMap = () => {
   const ZOOM_LEVEL = 9;
-  const [mapPosition, setMapPostion] = useState({ lat: 39.5, lng: -98.35 });
+  const { lat, lng } = useUserStore();
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    if (mapRef.current && lat != null && lng != null) {
+      mapRef.current.flyTo([lat, lng], 15);
+    }
+  }, [lat, lng]);
 
   const markerIcon = new L.Icon({
     iconUrl: "/map-marker.png",
@@ -17,8 +26,9 @@ const OpenStreetMap = () => {
 
   return (
     <MapContainer
-      center={mapPosition}
+      center={{ lat: 39.5, lng: -98.35 }}
       zoom={ZOOM_LEVEL}
+      ref={mapRef}
       className="map-container"
     >
       <TileLayer
