@@ -89,3 +89,19 @@ a {
   color: inherit;
   text-decoration: none;
 }
+main {
+  position: relative;
+  height: 90vh;
+  max-height: 90vh;
+}
+.leaflet-container {
+  z-index: -1;
+}
+.map-container {
+  height: 100%;
+}
+.position-btn {
+  position: relative;
+  z-index: 2;
+  bottom: 50px;
+}
