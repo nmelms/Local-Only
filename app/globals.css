@@ -89,3 +89,32 @@ a {
   color: inherit;
   text-decoration: none;
 }
+main {
+  position: relative;
+  height: 90vh;
+  max-height: 90vh;
+}
+.leaflet-container {
+  z-index: 1;
+}
+.map-container {
+  height: 100%;
+}
+.position-btn {
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  bottom: 20px;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
