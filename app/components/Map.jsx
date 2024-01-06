@@ -24,6 +24,14 @@ const OpenStreetMap = () => {
     shadowSize: [41, 41],
   });
 
+  const userIcon = new L.Icon({
+    iconUrl: "/map-marker.png",
+    iconSize: [25, 25],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
   return (
     <MapContainer
       center={{ lat: 39.5, lng: -98.35 }}
@@ -33,8 +41,9 @@ const OpenStreetMap = () => {
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
+      <Marker position={{ lat, lng }} icon={userIcon}></Marker>
       {coffeeShops.map((shop, index) => (
         <Marker
           key={index}

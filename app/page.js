@@ -5,11 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useUserStore from "./useUserStore";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { lat, setLocation } = useUserStore();
+  const { lat, lng, setLocation, spinning, setSpinning } = useUserStore();
 
   const handlePositionClick = () => {
+    setSpinning(true);
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         setLocation(position.coords.latitude, position.coords.longitude);
@@ -20,12 +22,16 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    setSpinning(false);
+  }, [lat, lng]);
+
   return (
     <main>
       <OpenStreetMap />
       <FontAwesomeIcon
         onClick={() => handlePositionClick()}
-        className="position-btn ps-2"
+        className={`position-btn ${spinning ? "spin" : ""}`}
         size="2x"
         icon={faCrosshairs}
       />
