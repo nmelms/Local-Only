@@ -3,6 +3,7 @@ import Image from "next/image";
 import MapboxMap from "./components/Map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import ShopOffcanvas from "./components/ShopOffcanvas";
 
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,10 +28,11 @@ export default function Home() {
   // useEffect(() => {
   //   setSpinning(false);
   // }, [lat, lng]);
-  console.log("rnder");
   return (
     <main>
       <MapboxMap />
+      <ShopOffcanvas />
+
       {/* <FontAwesomeIcon
         onClick={() => handlePositionClick()}
         className={`position-btn ${spinning ? "spin" : ""}`}

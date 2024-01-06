@@ -1,10 +1,14 @@
 "use client";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useUserStore from "../useUserStore";
 
 const BottomNav = () => {
+  const { setShowOffcanvas, showOffcanvas } = useUserStore();
   const handleAddClick = () => {
     console.log("click");
+    setShowOffcanvas(true);
+    console.log(showOffcanvas);
   };
   return (
     <div className="container bottom-nav">
