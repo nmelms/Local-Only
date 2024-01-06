@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Grind House",
+        "description": "Enjoy a unique coffee experience at The Grind House."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.84652096979028, 35.21387400199022]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brewed Awakenings",
+        "description": "Enjoy a unique coffee experience at Brewed Awakenings."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.8287385360962, 35.20651739078995]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Coffee Bean",
+        "description": "Enjoy a unique coffee experience at The Coffee Bean."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.83849954780617, 35.211375561787335]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Caffeine Dreams",
+        "description": "Enjoy a unique coffee experience at Caffeine Dreams."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.82274146066781, 35.203645483215475]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mocha Moments",
+        "description": "Enjoy a unique coffee experience at Mocha Moments."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.84022856837062, 35.22774414659614]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Espresso Lane",
+        "description": "Enjoy a unique coffee experience at Espresso Lane."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.8283101006888, 35.21117755009301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Steaming Cups",
+        "description": "Enjoy a unique coffee experience at Steaming Cups."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.84727368283167, 35.20306529218617]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Roasted Beans",
+        "description": "Enjoy a unique coffee experience at Roasted Beans."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.82464705431192, 35.2067463403026]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brewed Delights",
+        "description": "Enjoy a unique coffee experience at Brewed Delights."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.82042915079678, 35.215005385213416]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Java Journeys",
+        "description": "Enjoy a unique coffee experience at Java Journeys."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.83210521222519, 35.2216067828369]
+      }
+    }
+  ]
+}
