@@ -1,20 +1,42 @@
 import { NextResponse } from "next/server";
+import { supabase } from "./lib/supabaseClient";
 
 export async function POST(res) {
   let data = await res.json();
   let geoJSON = {
+    //   type: "Feature",
+    //   geometry: {
+    //     type: "Point",
+    //     coordinates: [],
+    //   },
+    //   properties: {
+    //     name: data.name,
+    //     street: data.street,
+    //     city: data.city,
+    //     state: data.state,
+    //     zip: data.zip,
+    //   },
     type: "Feature",
-    geometry: {
-      type: "Point",
-      coordinates: [],
-    },
-    properties: {
-      name: data.name,
-      street: data.street,
-      city: data.city,
-      state: data.state,
-      zip: data.zip,
-    },
+    geomentry_type: "Point",
+    lat: 0,
+    lng: 0,
+    name: data.name,
+    street: data.street,
+    city: data.city,
+    state: data.state,
+    zip: data.zip,
+  };
+
+  const insertDataToSupabase = async (geoJSON) => {
+    const { data, error } = await supabase
+      .from("locations") // Replace with your actual table name
+      .insert([geoJSON]);
+
+    if (error) {
+      console.error("Error inserting data:", error);
+      return error;
+    }
+    return data;
   };
 
   const getLatLng = async (data) => {
@@ -40,7 +62,10 @@ export async function POST(res) {
 
   let LatLng = await getLatLng(data);
   //geojson is ready to send all fields are currently required
-  geoJSON.geometry.coordinates = [LatLng.lat, LatLng.lng];
+  geoJSON.lat = LatLng.lat;
+  geoJSON.lng = LatLng.lng;
+  const insertResult = await insertDataToSupabase(geoJSON);
+  console.log(insertResult, "this thing works");
 
   return NextResponse.json({ messsage: "hello" });
 }
