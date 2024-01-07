@@ -2,6 +2,20 @@ import { NextResponse } from "next/server";
 
 export async function POST(res) {
   let data = await res.json();
+  let geoJSON = {
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: [],
+    },
+    properties: {
+      name: data.name,
+      street: data.street,
+      city: data.city,
+      state: data.state,
+      zip: data.zip,
+    },
+  };
 
   const getLatLng = async (data) => {
     let number = data.street.replace(/ /g, "+");
@@ -25,9 +39,8 @@ export async function POST(res) {
   };
 
   let LatLng = await getLatLng(data);
-  console.log(LatLng, "latlng");
-  // console.log(response, "this the res");
-  // let json = await response.json();
+  //geojson is ready to send all fields are currently required
+  geoJSON.geometry.coordinates = [LatLng.lat, LatLng.lng];
 
   return NextResponse.json({ messsage: "hello" });
 }
