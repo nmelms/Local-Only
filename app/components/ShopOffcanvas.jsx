@@ -17,7 +17,7 @@ function ShopOffcanvas() {
       city: e.target.city.value,
       state: e.target.state.value,
       zip: e.target.zip.value,
-      details: e.target.details.value,
+      description: e.target.details.value,
     };
 
     fetch("/api/shop-data", {

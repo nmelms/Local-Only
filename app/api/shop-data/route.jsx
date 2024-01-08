@@ -25,15 +25,15 @@ export async function POST(res) {
     city: data.city,
     state: data.state,
     zip: data.zip,
+    description: data.description,
   };
 
   const insertDataToSupabase = async (geoJSON) => {
     const { data, error } = await supabase
-      .from("locations") // Replace with your actual table name
-      .insert([geoJSON]);
-
+      .from("locations")
+      .insert(geoJSON)
+      .select("*");
     if (error) {
-      console.error("Error inserting data:", error);
       return error;
     }
     return data;
@@ -61,11 +61,9 @@ export async function POST(res) {
   };
 
   let LatLng = await getLatLng(data);
-  //geojson is ready to send all fields are currently required
   geoJSON.lat = LatLng.lat;
   geoJSON.lng = LatLng.lng;
   const insertResult = await insertDataToSupabase(geoJSON);
-  console.log(insertResult, "this thing works");
 
-  return NextResponse.json({ messsage: "hello" });
+  return NextResponse.json(insertResult);
 }
