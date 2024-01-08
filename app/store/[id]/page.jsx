@@ -20,6 +20,11 @@ const page = async ({ params }) => {
   let shopData = await fetchShopById(params.id);
   return (
     <div>
+      <img
+        src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
+`}
+        alt=""
+      />
       <h2>{shopData.name}</h2>
     </div>
   );

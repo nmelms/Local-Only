@@ -14,6 +14,7 @@ export async function POST(res) {
     state: data.state,
     zip: data.zip,
     description: data.description,
+    imageURL: data.imageURL,
   };
 
   const insertDataToSupabase = async (geoJSON) => {

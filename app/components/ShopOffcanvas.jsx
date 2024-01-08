@@ -3,11 +3,29 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import useUserStore from "../useUserStore";
 import Form from "react-bootstrap/Form";
+import { supabase } from "../api/shop-data/lib/supabaseClient";
 
 function ShopOffcanvas() {
   const { showOffcanvas, setShowOffcanvas } = useUserStore();
+  const [imageURL, setImageURL] = useState("");
   const [show, setShow] = useState(showOffcanvas);
   const handleClose = () => setShowOffcanvas(false);
+
+  async function uploadImage(file) {
+    const { data, error } = await supabase.storage
+      .from("coffee-shop-images")
+      .upload(`${file.name}`, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+
+    return data;
+  }
+
+  const handleImageChange = async (e) => {
+    let url = await uploadImage(e.target.files[0]);
+    setImageURL(url.fullPath);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +36,10 @@ function ShopOffcanvas() {
       state: e.target.state.value,
       zip: e.target.zip.value,
       description: e.target.details.value,
+      imageURL: imageURL,
     };
+
+    console.log(formData, " before submission");
 
     fetch("/api/shop-data", {
       method: "POST",
@@ -56,6 +77,11 @@ function ShopOffcanvas() {
 
             <Form.Group className="mb-3" controlId="zip">
               <Form.Control type="text" placeholder="Zip code" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="image">
+              <Form.Label>Shop Image</Form.Label>
+              <Form.Control type="file" onChange={handleImageChange} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="details">
