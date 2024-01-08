@@ -9,11 +9,10 @@ const MapboxMap = () => {
       features: data.map((shop) => ({
         type: "Feature",
         geometry: {
-          type: shop.geometryType || "Point", // default to Point if undefined
-          coordinates: [shop.lng, shop.lat], // ensure longitude comes first
+          type: shop.geometryType || "Point",
+          coordinates: [shop.lng, shop.lat],
         },
         properties: {
-          // Add all other properties you need
           name: shop.name,
           street: shop.street,
           city: shop.city,
@@ -105,8 +104,6 @@ const MapboxMap = () => {
 
     map.on("click", "unclustered-point", (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
-      const mag = e.features[0].properties.mag;
-      const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
 
       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -114,7 +111,7 @@ const MapboxMap = () => {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`)
+        .setHTML(`${e.features[0].properties.name}`)
         .addTo(map);
     });
 
