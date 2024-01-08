@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import mapboxgl from "mapbox-gl";
 
 const MapboxMap = () => {
   const [shopData, setShopData] = useState(null);
   const convertToGeoJSON = (data) => {
+    console.log(data, "this is the id data");
     return {
       type: "FeatureCollection",
       features: data.map((shop) => ({
@@ -13,6 +15,7 @@ const MapboxMap = () => {
           coordinates: [shop.lng, shop.lat],
         },
         properties: {
+          id: shop.id,
           name: shop.name,
           street: shop.street,
           city: shop.city,
@@ -30,7 +33,6 @@ const MapboxMap = () => {
   }, []);
 
   useEffect(() => {
-    console.log(shopData, "this the shop dta");
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
     const map = new mapboxgl.Map({
@@ -111,7 +113,10 @@ const MapboxMap = () => {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`${e.features[0].properties.name}`)
+        .setHTML(
+          `${e.features[0].properties.name} <br>
+          <a href="/${e.features[0].properties.id}">Read More</a>`
+        )
         .addTo(map);
     });
 
