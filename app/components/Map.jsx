@@ -5,7 +5,6 @@ import mapboxgl from "mapbox-gl";
 const MapboxMap = () => {
   const [shopData, setShopData] = useState(null);
   const convertToGeoJSON = (data) => {
-    console.log(data, "this is the id data");
     return {
       type: "FeatureCollection",
       features: data.map((shop) => ({
@@ -115,7 +114,7 @@ const MapboxMap = () => {
         .setLngLat(coordinates)
         .setHTML(
           `${e.features[0].properties.name} <br>
-          <a href="/${e.features[0].properties.id}">Read More</a>`
+          <a href="/store/${e.features[0].properties.id}">Read More</a>`
         )
         .addTo(map);
     });
