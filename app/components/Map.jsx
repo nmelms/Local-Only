@@ -1,9 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
 const MapboxMap = () => {
+  const [shopData, setShopData] = useState(null);
+  const convertToGeoJSON = (data) => {
+    return {
+      type: "FeatureCollection",
+      features: data.map((shop) => ({
+        type: "Feature",
+        geometry: {
+          type: shop.geometryType || "Point", // default to Point if undefined
+          coordinates: [shop.lng, shop.lat], // ensure longitude comes first
+        },
+        properties: {
+          // Add all other properties you need
+          name: shop.name,
+          street: shop.street,
+          city: shop.city,
+          state: shop.state,
+          zip: shop.zip,
+        },
+      })),
+    };
+  };
+
   useEffect(() => {
-    console.log("mapp render");
+    fetch("api/shop-data", { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => setShopData(convertToGeoJSON(data)));
+  }, []);
+
+  useEffect(() => {
+    console.log(shopData, "this the shop dta");
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
     const map = new mapboxgl.Map({
@@ -16,7 +44,7 @@ const MapboxMap = () => {
     map.on("load", () => {
       map.addSource("coffeeshops", {
         type: "geojson",
-        data: "/data.geojson",
+        data: shopData,
         cluster: true,
         clusterMaxZoom: 14,
         clusterRadius: 50,
@@ -123,7 +151,7 @@ const MapboxMap = () => {
         showUserHeading: true,
       })
     );
-  }, []);
+  }, [shopData]);
 
   return <div id="map" style={{ height: "90vh" }} />;
 };

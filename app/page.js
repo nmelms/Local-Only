@@ -11,23 +11,6 @@ import useUserStore from "./useUserStore";
 import { useEffect } from "react";
 
 export default function Home() {
-  // const { lat, lng, setLocation, spinning, setSpinning } = useUserStore();
-
-  // const handlePositionClick = () => {
-  //   setSpinning(true);
-  //   if ("geolocation" in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       setLocation(position.coords.latitude, position.coords.longitude);
-  //     });
-  //   } else {
-  //     document.getElementById("location").innerHTML =
-  //       "Geolocation is not supported by this browser.";
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setSpinning(false);
-  // }, [lat, lng]);
   return (
     <main>
       <MapboxMap />

@@ -4,18 +4,6 @@ import { supabase } from "./lib/supabaseClient";
 export async function POST(res) {
   let data = await res.json();
   let geoJSON = {
-    //   type: "Feature",
-    //   geometry: {
-    //     type: "Point",
-    //     coordinates: [],
-    //   },
-    //   properties: {
-    //     name: data.name,
-    //     street: data.street,
-    //     city: data.city,
-    //     state: data.state,
-    //     zip: data.zip,
-    //   },
     type: "Feature",
     geomentry_type: "Point",
     lat: 0,
@@ -66,4 +54,10 @@ export async function POST(res) {
   const insertResult = await insertDataToSupabase(geoJSON);
 
   return NextResponse.json(insertResult);
+}
+
+export async function GET() {
+  const { data, error } = await supabase.from("locations").select();
+
+  return NextResponse.json(data);
 }
