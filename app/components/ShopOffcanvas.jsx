@@ -48,7 +48,9 @@ function ShopOffcanvas() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    }).then(() => setShowOffcanvas(false));
+    })
+      .then(() => setShowOffcanvas(false))
+      .catch((error) => console.log(error, "iin off canvas"));
   };
 
   return (

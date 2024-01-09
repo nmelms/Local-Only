@@ -2,6 +2,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useUserStore from "../useUserStore";
+import Link from "next/link";
 
 const BottomNav = () => {
   const { setShowOffcanvas, showOffcanvas } = useUserStore();
@@ -20,7 +21,9 @@ const BottomNav = () => {
             icon={faPlus}
           />
         </div>
-        <div className="col-8">col 6</div>
+        <div className="col-8">
+          <Link href="/store/32">click me</Link>
+        </div>
       </div>
     </div>
   );

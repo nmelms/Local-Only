@@ -4,7 +4,6 @@ import { supabase } from "@/app/lib/supabaseClient";
 
 const page = async ({ params }) => {
   async function fetchShopById(shopId) {
-    console.log(shopId);
     const { data, error } = await supabase
       .from("locations")
       .select("*")
@@ -20,7 +19,7 @@ const page = async ({ params }) => {
 
   let shopData = await fetchShopById(params.id);
   return (
-    <div>
+    <div className="coffee-shop-page">
       <Link href="/"> go back</Link>
       <img
         src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}

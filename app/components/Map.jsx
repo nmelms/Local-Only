@@ -54,11 +54,24 @@ const MapboxMap = () => {
   // }, [router]);
 
   useEffect(() => {
-    if (!shopData) {
-      fetch("api/shop-data", { method: "GET" })
-        .then((res) => res.json())
-        .then((data) => setShopData(convertToGeoJSON(data)));
-    }
+    const fetchData = async () => {
+      if (!shopData) {
+        try {
+          let res = await fetch("/api/shop-data", { method: "GET" });
+          if (res.ok) {
+            let data = await res.json();
+            console.log(data, "this the data");
+            setShopData(convertToGeoJSON(data));
+          } else {
+            console.log(res, "Error fetching shop data");
+          }
+        } catch (error) {
+          console.error("Error in map.jsx:", error);
+        }
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {

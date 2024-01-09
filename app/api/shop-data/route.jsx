@@ -44,7 +44,8 @@ export async function POST(res) {
       .then((res) => res.json())
       .then((data) => {
         return data.results[0].location;
-      });
+      })
+      .catch((error) => console.log(error, "in route.jsx"));
 
     return await res;
   };
