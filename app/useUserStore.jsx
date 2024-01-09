@@ -9,6 +9,7 @@ const useUserStore = create((set) => ({
   showOffcanvas: false,
   shopData: null,
   mapInstance: null, // Store the map instance
+  isMapSet: false,
 
   // actions
   setLocation: (lat, lng) => set({ lat, lng }),
@@ -17,6 +18,7 @@ const useUserStore = create((set) => ({
   isUserSet: (isUserSet) => set({ isUserSet }),
   setShopData: (shopData) => set({ shopData }),
   setMapInstance: (mapInstance) => set({ mapInstance }),
+  setIsMapSet: (isMapSet) => set({ isMapSet }),
 }));
 
 export default useUserStore;

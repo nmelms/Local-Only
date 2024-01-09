@@ -7,7 +7,7 @@ import useUserStore from "../useUserStore";
 import initMap from "../lib/initMap";
 
 const MapboxMap = () => {
-  const { shopData, setShopData } = useUserStore();
+  const { shopData, setShopData, setIsMapSet, isMapSet } = useUserStore();
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
   const router = useRouter();
@@ -76,7 +76,7 @@ const MapboxMap = () => {
 
   useEffect(() => {
     if (shopData && !mapRef.current) {
-      initMap(shopData, mapRef, router);
+      initMap(shopData, isMapSet, setIsMapSet, router);
     }
   }, [shopData]);
 
