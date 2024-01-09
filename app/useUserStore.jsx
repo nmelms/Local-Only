@@ -7,12 +7,16 @@ const useUserStore = create((set) => ({
   isUserSet: false,
   spinning: false,
   showOffcanvas: false,
+  shopData: null,
+  mapInstance: null, // Store the map instance
 
   // actions
   setLocation: (lat, lng) => set({ lat, lng }),
   setSpinning: (spinning) => set({ spinning }),
   setShowOffcanvas: (showOffcanvas) => set({ showOffcanvas }),
   isUserSet: (isUserSet) => set({ isUserSet }),
+  setShopData: (shopData) => set({ shopData }),
+  setMapInstance: (mapInstance) => set({ mapInstance }),
 }));
 
 export default useUserStore;

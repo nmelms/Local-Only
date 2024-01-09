@@ -1,5 +1,6 @@
 import React from "react";
-import { supabase } from "@/app/api/shop-data/lib/supabaseClient";
+import Link from "next/link";
+import { supabase } from "@/app/lib/supabaseClient";
 
 const page = async ({ params }) => {
   async function fetchShopById(shopId) {
@@ -20,6 +21,7 @@ const page = async ({ params }) => {
   let shopData = await fetchShopById(params.id);
   return (
     <div>
+      <Link href="/"> go back</Link>
       <img
         src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
 `}

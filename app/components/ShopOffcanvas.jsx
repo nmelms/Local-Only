@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import useUserStore from "../useUserStore";
 import Form from "react-bootstrap/Form";
-import { supabase } from "../api/shop-data/lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 
 function ShopOffcanvas() {
   const { showOffcanvas, setShowOffcanvas } = useUserStore();
