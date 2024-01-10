@@ -122,6 +122,12 @@ const initMap = (shopData, isMapSet, setIsMapSet, router) => {
   map.on("mouseleave", "clusters", () => {
     map.getCanvas().style.cursor = "";
   });
+  map.on("mouseenter", "unclustered-point", () => {
+    map.getCanvas().style.cursor = "pointer";
+  });
+  map.on("mouseleave", "unclustered-point", () => {
+    map.getCanvas().style.cursor = "";
+  });
   // Add geolocate control to the map.
   map.addControl(
     new mapboxgl.GeolocateControl({
