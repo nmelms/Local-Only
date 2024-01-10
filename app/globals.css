@@ -139,3 +139,10 @@ main {
   align-items: center;
   flex-direction: column;
 }
+.popup-title {
+  font-size: 1rem;
+}
+.popup-btn {
+  border: none;
+  background-color: transparent;
+}
