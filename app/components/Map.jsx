@@ -5,9 +5,18 @@ import Link from "next/link";
 import mapboxgl from "mapbox-gl";
 import useUserStore from "../useUserStore";
 import initMap from "../lib/initMap";
+import StorePopup from "./StorePopup";
 
 const MapboxMap = () => {
-  const { shopData, setShopData, setIsMapSet, isMapSet } = useUserStore();
+  const {
+    shopData,
+    setShopData,
+    setIsMapSet,
+    isMapSet,
+    showPopup,
+    setShowPopup,
+  } = useUserStore();
+
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
   const router = useRouter();
@@ -76,11 +85,19 @@ const MapboxMap = () => {
 
   useEffect(() => {
     if (shopData && !mapRef.current) {
-      initMap(shopData, isMapSet, setIsMapSet, router);
+      initMap(shopData, isMapSet, setIsMapSet, router, setShowPopup, showPopup);
     }
   }, [shopData]);
 
-  return <div id="map" style={{ height: "90vh" }} />;
+  useEffect(() => {
+    console.log("this is the value in the useEffect:", showPopup);
+  }, [showPopup]);
+
+  return (
+    <div id="map" style={{ height: "90vh" }}>
+      {showPopup && <StorePopup />}
+    </div>
+  );
 };
 
 export default MapboxMap;

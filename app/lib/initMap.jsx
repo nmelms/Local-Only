@@ -1,7 +1,15 @@
 import mapboxgl from "mapbox-gl";
 import toTitleCase from "./toTitleCase";
+let isEventHandled = false;
 
-const initMap = (shopData, isMapSet, setIsMapSet, router) => {
+const initMap = (
+  shopData,
+  isMapSet,
+  setIsMapSet,
+  router,
+  setShowPopup,
+  showPopup
+) => {
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   if (isMapSet) return;
@@ -69,7 +77,12 @@ const initMap = (shopData, isMapSet, setIsMapSet, router) => {
     });
   });
 
+  //show store popup on unclusted point click
   map.on("click", "unclustered-point", (e) => {
+    isEventHandled = true;
+
+    setShowPopup(true);
+    console.log("click is working", showPopup);
     const coordinates = e.features[0].geometry.coordinates.slice();
     let features = e.features[0];
 
@@ -77,26 +90,17 @@ const initMap = (shopData, isMapSet, setIsMapSet, router) => {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-    const popup = new mapboxgl.Popup().setLngLat(coordinates).setHTML(
-      //this is a work around to keep the Reloads down
-      `  ${toTitleCase(e.features[0].properties.name)} <br>
-      <a href="/store/${features.properties.id}" id="popup-link" type="button">
-        Find Out More
-      </a>`
-    );
-    //prevents default link behavior and pushes to the router
-    //i have to do this because Link cant be used here
-    popup.on("open", () => {
-      const link = document.getElementById("popup-link");
-      if (link) {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          router.push(link.getAttribute("href"));
-        });
-      }
-    });
+    setTimeout(() => (isEventHandled = false), 10);
+  });
+  map.on("click", (e) => {
+    console.log(showPopup, "this is on the map handler");
+    if (isEventHandled) {
+      // The event has already been handled by the unclustered-point layer
+      return;
+    }
 
-    popup.addTo(map);
+    setShowPopup(false);
+    console.log(showPopup, "second");
   });
 
   map.on("click", "clusters", (e) => {
@@ -141,3 +145,24 @@ const initMap = (shopData, isMapSet, setIsMapSet, router) => {
 };
 
 export default initMap;
+
+// const popup = new mapboxgl.Popup().setLngLat(coordinates).setHTML(
+//   //this is a work around to keep the Reloads down
+//   `  ${toTitleCase(e.features[0].properties.name)} <br>
+//   <a href="/store/${features.properties.id}" id="popup-link" type="button">
+//     Find Out More
+//   </a>`
+// );
+//prevents default link behavior and pushes to the router
+//i have to do this because Link cant be used here
+// popup.on("open", () => {
+//   const link = document.getElementById("popup-link");
+//   if (link) {
+//     link.addEventListener("click", (event) => {
+//       event.preventDefault();
+//       router.push(link.getAttribute("href"));
+//     });
+//   }
+// });
+
+// popup.addTo(map);
