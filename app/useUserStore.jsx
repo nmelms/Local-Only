@@ -11,6 +11,7 @@ const useUserStore = create((set) => ({
   mapInstance: null, // Store the map instance
   isMapSet: false,
   showPopup: false,
+  popupData: {},
 
   // actions
   setLocation: (lat, lng) => set({ lat, lng }),
@@ -21,6 +22,7 @@ const useUserStore = create((set) => ({
   setMapInstance: (mapInstance) => set({ mapInstance }),
   setIsMapSet: (isMapSet) => set({ isMapSet }),
   setShowPopup: (showPopup) => set({ showPopup }),
+  setPopupData: (popupData) => set({ popupData }),
 }));
 
 export default useUserStore;

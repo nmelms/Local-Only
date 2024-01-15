@@ -8,7 +8,8 @@ const initMap = (
   setIsMapSet,
   router,
   setShowPopup,
-  showPopup
+  showPopup,
+  setPopupData
 ) => {
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
@@ -83,6 +84,7 @@ const initMap = (
     isEventHandled = true;
 
     setShowPopup(true);
+    setPopupData(e.features[0]);
     console.log("click is working", showPopup);
     const coordinates = e.features[0].geometry.coordinates.slice();
     let features = e.features[0];

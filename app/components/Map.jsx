@@ -15,6 +15,8 @@ const MapboxMap = () => {
     isMapSet,
     showPopup,
     setShowPopup,
+    setPopupData,
+    popupData,
   } = useUserStore();
 
   const mapContainer = useRef(null);
@@ -84,14 +86,28 @@ const MapboxMap = () => {
   }, []);
 
   useEffect(() => {
+    console.log(popupData, "popup data");
+  }, [popupData]);
+
+  useEffect(() => {
     if (shopData && !mapRef.current) {
-      initMap(shopData, isMapSet, setIsMapSet, router, setShowPopup, showPopup);
+      initMap(
+        shopData,
+        isMapSet,
+        setIsMapSet,
+        router,
+        setShowPopup,
+        showPopup,
+        setPopupData
+      );
     }
   }, [shopData]);
 
   return (
     <div id="map" style={{ height: "90vh" }}>
-      <div className="popup-wrapper">{showPopup && <StorePopup />}</div>
+      <div className="popup-wrapper">
+        {showPopup && <StorePopup popupData={popupData} />}
+      </div>
     </div>
   );
 };

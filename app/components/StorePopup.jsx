@@ -1,7 +1,7 @@
 import React from "react";
 
-const StorePopup = () => {
-  return <div className="store-popup ">StorePopup</div>;
+const StorePopup = ({ popupData }) => {
+  return <div className="store-popup ">{popupData.properties.name}</div>;
 };
 
 export default StorePopup;
