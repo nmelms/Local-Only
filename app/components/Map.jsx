@@ -89,13 +89,9 @@ const MapboxMap = () => {
     }
   }, [shopData]);
 
-  useEffect(() => {
-    console.log("this is the value in the useEffect:", showPopup);
-  }, [showPopup]);
-
   return (
     <div id="map" style={{ height: "90vh" }}>
-      {showPopup && <StorePopup />}
+      <div className="popup-wrapper">{showPopup && <StorePopup />}</div>
     </div>
   );
 };

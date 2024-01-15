@@ -146,14 +146,22 @@ main {
   border: none;
   background-color: transparent;
 }
-.store-popup {
-  z-index: 5;
+.popup-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
   position: absolute;
   bottom: 0;
   margin: 0 auto;
+}
+.store-popup {
   border: 1px solid black;
   background-color: white;
   height: 100px;
   width: 80%;
+  position: relative;
+  z-index: 5;
   margin-bottom: 0.5rem;
 }

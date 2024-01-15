@@ -20,10 +20,7 @@ const useUserStore = create((set) => ({
   setShopData: (shopData) => set({ shopData }),
   setMapInstance: (mapInstance) => set({ mapInstance }),
   setIsMapSet: (isMapSet) => set({ isMapSet }),
-  setShowPopup: (showPopup) => {
-    console.log("Setting showPopup to:", showPopup);
-    set({ showPopup });
-  },
+  setShowPopup: (showPopup) => set({ showPopup }),
 }));
 
 export default useUserStore;

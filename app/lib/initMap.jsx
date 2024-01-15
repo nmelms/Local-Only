@@ -79,6 +79,7 @@ const initMap = (
 
   //show store popup on unclusted point click
   map.on("click", "unclustered-point", (e) => {
+    //unclustered click was propagating into the map so i have to set this
     isEventHandled = true;
 
     setShowPopup(true);
@@ -93,14 +94,13 @@ const initMap = (
     setTimeout(() => (isEventHandled = false), 10);
   });
   map.on("click", (e) => {
-    console.log(showPopup, "this is on the map handler");
+    //if user clicks an unclusted point dont propogate
+    //couldnt user e.stoppropogation
     if (isEventHandled) {
-      // The event has already been handled by the unclustered-point layer
       return;
     }
 
     setShowPopup(false);
-    console.log(showPopup, "second");
   });
 
   map.on("click", "clusters", (e) => {
