@@ -160,8 +160,23 @@ main {
   border: 1px solid black;
   background-color: white;
   height: 100px;
-  width: 80%;
+  max-width: 80%;
   position: relative;
   z-index: 5;
   margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.popup-title {
+  text-align: center;
+  font-size: 1rem;
+}
+.img-wrapper {
+  height: 90%;
+}
+.popup-image {
+  height: 100%;
+  width: auto;
+  padding-bottom: 1rem;
 }
