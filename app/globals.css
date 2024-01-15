@@ -180,3 +180,10 @@ main {
   width: auto;
   padding-bottom: 0.5rem;
 }
+.info-link {
+  padding: 0.25rem;
+  border: 1px solid black;
+  width: 100px;
+  text-decoration: none;
+  color: black;
+}

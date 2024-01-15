@@ -31,7 +31,12 @@ const StorePopup = ({ popupData }) => {
         </div>
 
         <div className="col-6 d-flex justify-content-center align-items-center">
-          <Link href={`/store/${shopData?.id}`}>Info</Link>
+          <Link
+            className="info-link rounded-pill"
+            href={`/store/${shopData?.id}`}
+          >
+            Info
+          </Link>
         </div>
       </div>
     </div>
