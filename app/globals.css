@@ -115,7 +115,7 @@ main {
   cursor: pointer;
 }
 .bottom-nav {
-  height: 10vh;
+  height: 10dvh;
 }
 .coffee-shop-page {
   position: absolute;

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "react-bootstrap";
 import Link from "next/link";
 import toTitleCase from "../lib/toTitleCase";
@@ -24,7 +25,12 @@ const StorePopup = ({ popupData }) => {
       </div>
       <div className="row flex-grow-1">
         <div className="col-6 img-wrapper h-100 ">
-          <img
+          <Image
+            blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcNm3CHwAGQAK69Z58EgAAAABJRU5ErkJggg=="
+            placeholder="blur"
+            width={60}
+            height={60}
+            alt="coffee shop"
             src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData?.imageURL}`}
             className="popup-image"
           />
