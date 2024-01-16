@@ -18,7 +18,7 @@ const StorePopup = ({ popupData }) => {
   return (
     <div className="store-popup container d-flex flex-column">
       <div className="row">
-        <span className="popup-title">
+        <span className="popup-title p-2">
           {toTitleCase(popupData.properties.name)}
         </span>
       </div>
