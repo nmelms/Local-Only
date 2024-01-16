@@ -1,5 +1,5 @@
 "use client";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useUserStore from "../useUserStore";
 import Link from "next/link";
@@ -21,9 +21,20 @@ const BottomNav = () => {
             icon={faPlus}
           />
         </div>
-        {/* <div className="col-8">
-          <Link href="/store/32">click me</Link>
-        </div> */}
+        <div className="col-4 d-flex justify-content-center align-items-center">
+          <FontAwesomeIcon
+            onClick={() => handleAddClick()}
+            className="plus-icon btn-border"
+            icon={faBars}
+          />
+        </div>
+        <div className="col-4 d-flex justify-content-center align-items-center">
+          <FontAwesomeIcon
+            onClick={() => handleAddClick()}
+            className="plus-icon btn-border"
+            icon={faUser}
+          />
+        </div>
       </div>
     </div>
   );
