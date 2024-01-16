@@ -14,7 +14,7 @@ const initMap = (
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   if (isMapSet) return;
-  map = new mapboxgl.Map({
+  let map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
     center: [-80.812992, 35.344192],
