@@ -104,7 +104,7 @@ const MapboxMap = () => {
   }, [shopData]);
 
   return (
-    <div id="map" style={{ height: "90vh" }}>
+    <div id="map" style={{ height: "90dvh" }}>
       <div className="popup-wrapper">
         {showPopup && <StorePopup popupData={popupData} />}
       </div>
