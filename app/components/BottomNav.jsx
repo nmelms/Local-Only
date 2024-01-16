@@ -17,13 +17,13 @@ const BottomNav = () => {
         <div className="col-4 d-flex justify-content-center align-items-center">
           <FontAwesomeIcon
             onClick={() => handleAddClick()}
-            className="plus-icon"
+            className="plus-icon btn-border"
             icon={faPlus}
           />
         </div>
-        <div className="col-8">
+        {/* <div className="col-8">
           <Link href="/store/32">click me</Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
