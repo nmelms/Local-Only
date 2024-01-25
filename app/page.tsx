@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import MapboxMap from "./components/Map";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import ShopOffcanvas from "./components/ShopOffcanvas";
