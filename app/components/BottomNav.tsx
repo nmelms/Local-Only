@@ -6,31 +6,34 @@ import Link from "next/link";
 
 const BottomNav = () => {
   const { setShowOffcanvas, showOffcanvas } = useUserStore();
-  const handleAddClick = () => {
-    console.log("click");
-    setShowOffcanvas(true);
-    console.log(showOffcanvas);
+  const handleAddClick = (
+    e: React.MouseEvent<SVGSVGElement>,
+    cavnas: string
+  ) => {
+    if (cavnas === "add") {
+      setShowOffcanvas(true);
+    }
   };
   return (
     <div className="container bottom-nav">
       <div className="row h-100 ">
         <div className="col-4 d-flex justify-content-center align-items-center">
           <FontAwesomeIcon
-            onClick={() => handleAddClick()}
+            onClick={(e) => handleAddClick(e, "add")}
             className="plus-icon btn-border"
             icon={faPlus}
           />
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
           <FontAwesomeIcon
-            onClick={() => handleAddClick()}
+            onClick={(e) => handleAddClick(e, "menu")}
             className="plus-icon btn-border"
             icon={faBars}
           />
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
           <FontAwesomeIcon
-            onClick={() => handleAddClick()}
+            onClick={(e) => handleAddClick(e, "profile")}
             className="plus-icon btn-border"
             icon={faUser}
           />

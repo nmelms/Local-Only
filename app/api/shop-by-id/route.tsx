@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { supabase } from "../../lib/supabaseClient";
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
+  console.log(request);
   const searchParams = request.nextUrl.searchParams;
   const shopId = searchParams.get("id");
 
-  async function fetchShopById(id) {
+  async function fetchShopById(id: string) {
     const { data, error } = await supabase
       .from("locations")
       .select("*")
@@ -19,7 +20,8 @@ export async function GET(request) {
     }
     return data;
   }
-
-  let shopData = await fetchShopById(shopId);
-  return NextResponse.json(shopData);
+  if (shopId) {
+    let shopData = await fetchShopById(shopId);
+    return NextResponse.json(shopData);
+  }
 }

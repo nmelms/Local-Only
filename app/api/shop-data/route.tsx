@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "../../lib/supabaseClient";
 
-export async function POST(res) {
+export async function POST(res: NextResponse) {
   let data = await res.json();
   let geoJSON = {
     type: "Feature",
@@ -17,7 +17,7 @@ export async function POST(res) {
     imageURL: data.imageURL,
   };
 
-  const insertDataToSupabase = async (geoJSON) => {
+  const insertDataToSupabase = async (geoJSON: DatabaseShopData) => {
     const { data, error } = await supabase
       .from("locations")
       .insert(geoJSON)
@@ -28,7 +28,7 @@ export async function POST(res) {
     return data;
   };
 
-  const getLatLng = async (data) => {
+  const getLatLng = async (data: DatabaseShopData) => {
     let number = data.street.replace(/ /g, "+");
     let address = ` ${data.city}, ${data.state} ${data.zip}`;
     let apiKey = process.env.NEXT_PUBLIC_GEOCOD_API_KEY;
