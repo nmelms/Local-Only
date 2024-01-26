@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { FormEventHandler, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import useUserStore from "../useUserStore";
@@ -26,23 +26,22 @@ function ShopOffcanvas() {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       let url = await uploadImage(e.target.files[0]);
-      setImageURL(url.fullPath); // Ensure fullPath exists on the returned object
+      setImageURL(url.fullPath);
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = {
-      name: e.target.name.value,
-      street: e.target.street.value,
-      city: e.target.city.value,
-      state: e.target.state.value,
-      zip: e.target.zip.value,
-      description: e.target.details.value,
+    const form = e.target as HTMLFormElement;
+    const formData: ShopFormData = {
+      name: form.InputName.value,
+      street: form.street.value,
+      city: form.city.value,
+      state: form.state.value,
+      zip: form.zip.value,
+      description: form.details.value,
       imageURL: imageURL,
     };
-
-    console.log(formData, " before submission");
 
     fetch("/api/shop-data", {
       method: "POST",
@@ -63,7 +62,7 @@ function ShopOffcanvas() {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Form onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group className="mb-3" controlId="name">
+          <Form.Group className="mb-3" controlId="InputName">
             <Form.Control type="text" placeholder="Name" />
           </Form.Group>
 
