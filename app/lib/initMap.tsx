@@ -1,17 +1,18 @@
 import mapboxgl from "mapbox-gl";
 import toTitleCase from "./toTitleCase";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 let isEventHandled = false;
 
 const initMap = (
-  shopData,
-  isMapSet,
-  setIsMapSet,
-  router,
-  setShowPopup,
-  showPopup,
-  setPopupData
+  shopData: any,
+  isMapSet: boolean,
+  setIsMapSet: (arg0: boolean) => boolean,
+  router: AppRouterInstance,
+  setShowPopup: (arg0: boolean) => void,
+  showPopup: boolean,
+  setPopupData: (arg0: any) => PopupStoreProps
 ) => {
-  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
   if (isMapSet) return;
   let map = new mapboxgl.Map({
@@ -79,22 +80,26 @@ const initMap = (
   });
 
   //show store popup on unclusted point click
-  map.on("click", "unclustered-point", (e) => {
-    //unclustered click was propagating into the map so i have to set this
-    isEventHandled = true;
+  map.on(
+    "click",
+    "unclustered-point",
+    (e: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
+      //unclustered click was propagating into the map so i have to set this
+      isEventHandled = true;
 
-    setShowPopup(true);
-    setPopupData(e.features[0].properties);
-    console.log(e.features[0]);
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    let features = e.features[0];
+      setShowPopup(true);
+      setPopupData(e.features[0].properties);
+      console.log(e.features[0]);
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      let features = e.features[0];
 
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      }
+
+      setTimeout(() => (isEventHandled = false), 10);
     }
-
-    setTimeout(() => (isEventHandled = false), 10);
-  });
+  );
   map.on("click", (e) => {
     //if user clicks an unclusted point dont propogate
     //couldnt user e.stoppropogation
@@ -105,22 +110,39 @@ const initMap = (
     setShowPopup(false);
   });
 
-  map.on("click", "clusters", (e) => {
-    const features = map.queryRenderedFeatures(e.point, {
-      layers: ["clusters"],
-    });
-    const clusterId = features[0].properties.cluster_id;
-    map
-      .getSource("coffeeshops")
-      .getClusterExpansionZoom(clusterId, (err, zoom) => {
-        if (err) return;
-
-        map.easeTo({
-          center: features[0].geometry.coordinates,
-          zoom: zoom,
-        });
+  map.on(
+    "click",
+    "clusters",
+    (e: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ["clusters"],
       });
-  });
+
+      if (!features.length || !features[0].geometry) return;
+
+      const feature = features[0];
+
+      // Check if the feature geometry is of type Point and has exactly two coordinates
+      if (
+        feature.geometry.type === "Point" &&
+        feature.geometry.coordinates.length === 2
+      ) {
+        const coordinates = feature.geometry.coordinates as [number, number];
+        const clusterId = feature.properties?.cluster_id;
+
+        const source = map.getSource("coffeeshops") as mapboxgl.GeoJSONSource;
+
+        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) return;
+
+          map.easeTo({
+            center: coordinates,
+            zoom: zoom,
+          });
+        });
+      }
+    }
+  );
 
   map.on("mouseenter", "clusters", () => {
     map.getCanvas().style.cursor = "pointer";
