@@ -27,3 +27,7 @@ interface DatabaseShopData {
   street: string;
   zip: string;
 }
+
+interface PopupStoreProps {
+  popupData: DatabaseShopData;
+}

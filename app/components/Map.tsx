@@ -86,10 +86,6 @@ const MapboxMap = () => {
   }, []);
 
   useEffect(() => {
-    console.log(popupData, "popup data");
-  }, [popupData]);
-
-  useEffect(() => {
     if (shopData && !mapRef.current) {
       initMap(
         shopData,

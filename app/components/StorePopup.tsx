@@ -5,22 +5,21 @@ import { Button } from "react-bootstrap";
 import Link from "next/link";
 import toTitleCase from "../lib/toTitleCase";
 
-const StorePopup = ({ popupData }) => {
-  const [shopData, setShopData] = useState();
+const StorePopup = ({ popupData }: PopupStoreProps) => {
+  const [shopData, setShopData] = useState<DatabaseShopData | null>(null);
 
+  //have to fetch the imageURL from the database here
   useEffect(() => {
-    fetch(`/api/shop-by-id?id=${popupData.properties.id}`, { method: "GET" })
+    fetch(`/api/shop-by-id?id=${popupData.id}`, { method: "GET" })
       .then((res) => res.json())
-      .then((data) => setShopData(data));
+      .then((data: DatabaseShopData) => setShopData(data));
   }, [popupData]);
-
-  console.log(shopData, "shop data");
 
   return (
     <div className="store-popup container d-flex flex-column">
       <div className="row">
         <span className="popup-title p-2">
-          {toTitleCase(popupData.properties.name)}
+          {popupData.name && toTitleCase(popupData.name)}
         </span>
       </div>
       <div className="row flex-grow-1">
