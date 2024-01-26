@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import BottomNav from "./components/BottomNav";
+import BottomNav from "./components/BottomNav.tsx";
 import MapboxMap from "./components/Map";
 
 const inter = Inter({ subsets: ["latin"] });
