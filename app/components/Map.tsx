@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import mapboxgl from "mapbox-gl";
+// import mapboxgl from "mapbox-gl";
 import useUserStore from "../useUserStore";
 import initMap from "../lib/initMap";
 import StorePopup from "./StorePopup";
@@ -22,13 +22,14 @@ const MapboxMap = () => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
   const router = useRouter();
-  const convertToGeoJSON = (data) => {
+
+  const convertToGeoJSON = (data: DatabaseShopData[]) => {
     return {
       type: "FeatureCollection",
       features: data.map((shop) => ({
         type: "Feature",
         geometry: {
-          type: shop.geometryType || "Point",
+          type: shop.geometry_type || "Point",
           coordinates: [shop.lng, shop.lat],
         },
         properties: {
@@ -70,8 +71,7 @@ const MapboxMap = () => {
         try {
           let res = await fetch("/api/shop-data", { method: "GET" });
           if (res.ok) {
-            let data = await res.json();
-            console.log(data, "this the data");
+            let data: DatabaseShopData[] = await res.json();
             setShopData(convertToGeoJSON(data));
           } else {
             console.log(res, "Error fetching shop data");
