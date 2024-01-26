@@ -15,10 +15,10 @@ interface ShopFormData {
 interface DatabaseShopData {
   city: string;
   description: string;
-  id: number;
+  id?: number;
   type: string;
-  geometry: string;
-  geometry_type: string;
+  geometry?: string;
+  geometry_type?: string;
   imageURL: string;
   lat: number;
   lng: number;
