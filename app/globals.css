@@ -201,3 +201,23 @@ main {
     inset -2px -2px 5px 0px rgba(255, 255, 255, 0.7);
   border: 1px solid lightgray;
 }
+/* store page styles */
+
+.store-image {
+  object-fit: cover;
+  padding: 1rem;
+  max-width: 100vw;
+  height: auto;
+}
+
+.navigate-btn {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  border: 1px solid black;
+  padding: 0.25rem 1rem;
+  width: 80vw;
+  margin: 0 auto;
+}

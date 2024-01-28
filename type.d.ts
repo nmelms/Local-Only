@@ -33,5 +33,5 @@ interface PopupStoreProps {
 }
 
 interface PageProps {
-  params: { shopId: number };
+  params: { id: number };
 }

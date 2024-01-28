@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { supabase } from "../../lib/supabaseClient";
 
 const page = async ({ params }: PageProps) => {
   async function fetchShopById(shopId: number) {
-    console.log(shopId);
     const { data, error } = await supabase
       .from("locations")
       .select("*")
@@ -18,16 +18,28 @@ const page = async ({ params }: PageProps) => {
     return data;
   }
 
-  let shopData = await fetchShopById(params.shopId);
+  let shopData = await fetchShopById(params.id);
   return (
     <div className="coffee-shop-page">
       <Link href="/"> go back</Link>
-      <img
+      <h2>{shopData.name}</h2>
+      <Image
         src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
 `}
         alt=""
+        className="store-image"
+        height={500}
+        width={500}
       />
-      <h2>{shopData.name}</h2>
+
+      <a
+        href={`https://www.google.com/maps/?q=${shopData.lat},${shopData.lng}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="navigate-btn rounded-pill"
+      >
+        Navigate
+      </a>
     </div>
   );
 };
