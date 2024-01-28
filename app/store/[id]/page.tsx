@@ -1,4 +1,6 @@
 import React from "react";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "../../lib/supabaseClient";
@@ -20,9 +22,10 @@ const page = async ({ params }: PageProps) => {
 
   let shopData = await fetchShopById(params.id);
   return (
-    <div className="coffee-shop-page">
+    <div className="coffee-shop-page d-flex flex-column ">
       <Link href="/"> go back</Link>
-      <h2>{shopData.name}</h2>
+      <FontAwesomeIcon size="2x" className="" icon={faCoffee} />
+      <h2 className="text-center pt-4">{shopData.name}</h2>
       <Image
         src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
 `}
@@ -40,6 +43,10 @@ const page = async ({ params }: PageProps) => {
       >
         Navigate
       </a>
+      <img
+        src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+999(${shopData.lng},${shopData.lat})/${shopData.lng},${shopData.lat},14/400x400?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
+        alt="Map"
+      />
     </div>
   );
 };
