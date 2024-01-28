@@ -22,6 +22,7 @@ const page = async ({ params }: PageProps) => {
   }
 
   let shopData = await fetchShopById(params.id);
+  console.log(shopData, "this is the shopData");
   return (
     <div className="coffee-shop-page d-flex flex-column ">
       <Link href="/">
@@ -32,10 +33,10 @@ const page = async ({ params }: PageProps) => {
         />
       </Link>
       <FontAwesomeIcon size="2x" className="" icon={faCoffee} />
-      <h2 className="text-center pt-4">{shopData.name}</h2>
+      <h2 className="text-center pt-4">{shopData?.name}</h2>
       <div className="store-image-wrapper">
         <Image
-          src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
+          src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData?.imageURL}
 `}
           alt=""
           className="store-image"

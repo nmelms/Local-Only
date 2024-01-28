@@ -89,7 +89,6 @@ const initMap = (
 
       setShowPopup(true);
       setPopupData(e.features[0].properties);
-      console.log(e.features[0]);
       const coordinates = e.features[0].geometry.coordinates.slice();
       let features = e.features[0];
 
