@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { supabase } from "../../lib/supabaseClient";
 
-const page = async ({ params }) => {
-  async function fetchShopById(shopId) {
+const page = async ({ params }: PageProps) => {
+  async function fetchShopById(shopId: number) {
+    console.log(shopId);
     const { data, error } = await supabase
       .from("locations")
       .select("*")
@@ -17,7 +18,7 @@ const page = async ({ params }) => {
     return data;
   }
 
-  let shopData = await fetchShopById(params.id);
+  let shopData = await fetchShopById(params.shopId);
   return (
     <div className="coffee-shop-page">
       <Link href="/"> go back</Link>
