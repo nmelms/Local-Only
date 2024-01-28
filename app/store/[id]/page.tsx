@@ -1,5 +1,6 @@
 import React from "react";
 import { faCoffee, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +25,6 @@ const page = async ({ params }: PageProps) => {
   return (
     <div className="coffee-shop-page d-flex flex-column ">
       <Link href="/">
-        {" "}
         <FontAwesomeIcon
           size="2x"
           className="p-4 back-arrow"
@@ -33,14 +33,17 @@ const page = async ({ params }: PageProps) => {
       </Link>
       <FontAwesomeIcon size="2x" className="" icon={faCoffee} />
       <h2 className="text-center pt-4">{shopData.name}</h2>
-      <Image
-        src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
+      <div className="store-image-wrapper">
+        <Image
+          src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}
 `}
-        alt=""
-        className="store-image"
-        height={500}
-        width={500}
-      />
+          alt=""
+          className="store-image"
+          height={500}
+          width={500}
+        />
+        <FontAwesomeIcon size="2x" className="heart-icon" icon={faHeart} />
+      </div>
 
       <a
         href={`https://www.google.com/maps/?q=${shopData.lat},${shopData.lng}`}

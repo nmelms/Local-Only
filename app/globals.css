@@ -203,6 +203,16 @@ main {
 }
 /* store page styles */
 
+.store-image-wrapper {
+  position: relative;
+}
+.heart-icon {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  color: white;
+}
+
 .store-image {
   object-fit: cover;
   padding: 1rem;
