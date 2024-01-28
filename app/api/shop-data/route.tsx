@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "../../lib/supabaseClient";
+import { NextApiResponse } from "next";
 
-export async function POST(res: NextResponse) {
-  let data = await res.json();
+export async function POST(req: NextRequest) {
+  let data = await req.json();
   let geoJSON = {
     type: "Feature",
     geomentry_type: "Point",
