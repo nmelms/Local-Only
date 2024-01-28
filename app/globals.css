@@ -221,3 +221,17 @@ main {
   width: 80vw;
   margin: 0 auto;
 }
+.static-store-map {
+  padding: 1rem;
+  border-radius: 25px;
+  height: 200px;
+  object-fit: cover;
+}
+.description-text {
+  padding: 1rem;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
