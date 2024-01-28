@@ -31,3 +31,7 @@ interface DatabaseShopData {
 interface PopupStoreProps {
   popupData: DatabaseShopData;
 }
+
+interface PageProps {
+  params: { id: number };
+}

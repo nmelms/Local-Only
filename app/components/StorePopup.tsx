@@ -24,15 +24,17 @@ const StorePopup = ({ popupData }: PopupStoreProps) => {
       </div>
       <div className="row flex-grow-1">
         <div className="col-6 img-wrapper h-100 ">
-          <Image
-            blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcNm3CHwAGQAK69Z58EgAAAABJRU5ErkJggg=="
-            placeholder="blur"
-            width={60}
-            height={60}
-            alt="coffee shop"
-            src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData?.imageURL}`}
-            className="popup-image"
-          />
+          {shopData && (
+            <Image
+              blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcNm3CHwAGQAK69Z58EgAAAABJRU5ErkJggg=="
+              placeholder="blur"
+              width={60}
+              height={60}
+              alt="coffee shop"
+              src={`https://xlvjgjhetfrtaigrimtd.supabase.co/storage/v1/object/public/${shopData.imageURL}`}
+              className="popup-image"
+            />
+          )}
         </div>
 
         <div className="col-6 d-flex justify-content-center align-items-center">
