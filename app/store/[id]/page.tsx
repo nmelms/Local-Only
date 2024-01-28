@@ -1,5 +1,5 @@
 import React from "react";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,7 +23,14 @@ const page = async ({ params }: PageProps) => {
   let shopData = await fetchShopById(params.id);
   return (
     <div className="coffee-shop-page d-flex flex-column ">
-      <Link href="/"> go back</Link>
+      <Link href="/">
+        {" "}
+        <FontAwesomeIcon
+          size="2x"
+          className="p-4 back-arrow"
+          icon={faArrowLeft}
+        />
+      </Link>
       <FontAwesomeIcon size="2x" className="" icon={faCoffee} />
       <h2 className="text-center pt-4">{shopData.name}</h2>
       <Image
