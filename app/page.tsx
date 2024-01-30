@@ -5,9 +5,5 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import ShopOffcanvas from "./components/ShopOffcanvas";
 
 export default function Home() {
-  return (
-    <main>
-      <ShopOffcanvas />
-    </main>
-  );
+  return <ShopOffcanvas />;
 }
