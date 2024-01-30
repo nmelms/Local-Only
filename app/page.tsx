@@ -10,14 +10,16 @@ import { useEffect } from "react";
 
 export default function Home() {
   const supabase = createClientComponentClient();
-  const { setUser } = useUserStore();
+  const { setUser, user } = useUserStore();
 
   useEffect(() => {
-    const user = supabase.auth.getUser();
-    if (user) {
-      setUser(user);
+    async function checkUser() {
+      const res = await supabase.auth.getUser();
+      if (!user) {
+        setUser(res.data.user);
+      }
     }
-    // setUser(session?.user || null);
+    checkUser();
   }, []);
   return <ShopOffcanvas />;
 }

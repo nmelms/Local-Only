@@ -19,11 +19,10 @@ const LoginPage = () => {
 
   useEffect(() => {
     async function getUser() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const res = await supabase.auth.getUser();
 
-      setUser(user);
+      setUser(res.data.user);
+      console.log(user, "in use effect ");
     }
 
     getUser();
@@ -31,18 +30,20 @@ const LoginPage = () => {
 
   const handleSignUp = async () => {
     console.log();
-    await supabase.auth.signUp({
+    const res = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     });
+    setUser(res.data.user);
     router.push("/");
   };
 
   const handleSignIn = async () => {
-    await supabase.auth.signInWithPassword({ email, password });
+    const res = await supabase.auth.signInWithPassword({ email, password });
+    setUser(res.data.user);
     router.push("/");
   };
 
