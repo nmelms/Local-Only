@@ -4,15 +4,30 @@ import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { User } from "@supabase/supabase-js";
+import useUserStore from "../useUserStore";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useUserStore();
   // const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    async function getUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setUser(user);
+    }
+
+    getUser();
+  }, []);
 
   const handleSignUp = async () => {
     console.log();
