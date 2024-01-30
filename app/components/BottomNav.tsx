@@ -2,16 +2,26 @@
 import { faPlus, faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useUserStore from "../useUserStore";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const BottomNav = () => {
   const { setShowOffcanvas, showOffcanvas } = useUserStore();
+  const { user } = useUserStore();
+  const router = useRouter();
   const handleAddClick = (
     e: React.MouseEvent<SVGSVGElement>,
     cavnas: string
   ) => {
     if (cavnas === "add") {
       setShowOffcanvas(true);
+    }
+    if (cavnas === "profile") {
+      if (!user) {
+        router.push("/login");
+      } else {
+        router.push("/profile");
+      }
     }
   };
   return (
