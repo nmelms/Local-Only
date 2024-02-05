@@ -248,3 +248,7 @@ main {
 .back-arrow {
   color: black;
 }
+#map {
+  height: 100vh;
+  width: 100vw;
+}

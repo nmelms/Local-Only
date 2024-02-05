@@ -3,15 +3,17 @@ import { faPlus, faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useUserStore from "../useUserStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const BottomNav = () => {
+  const router = useRouter();
   const { setShowOffcanvas, showOffcanvas } = useUserStore();
   const handleAddClick = (
     e: React.MouseEvent<SVGSVGElement>,
     cavnas: string
   ) => {
     if (cavnas === "add") {
-      setShowOffcanvas(true);
+      router.push("/back");
     }
   };
   return (

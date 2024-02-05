@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import BottomNav from "./components/BottomNav";
-import MapboxMap from "./components/Map";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +14,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MapboxMap />
+        <Link href="/back">go forward</Link>
         <BottomNav />
         {children}
       </body>
